@@ -20,6 +20,6 @@ var UIController = (function(){
 
 // Controller Module
 
-var controller = (function(){
+var controller = (function(budgetCtrl, UICtrl){   // Module can also receive arguments
     // some code
-})();
+})(budgetController, UIController);
