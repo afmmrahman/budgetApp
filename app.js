@@ -11,7 +11,32 @@ var budgetController = (function(){
 // 2. UI Module
 
 var UIController = (function(){
-    // some code
+    
+    var DOMStrings = {
+        
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
+        
+    };
+    
+    return {
+      
+        getInput: function(){
+            
+            return {
+                type: document.querySelector(DOMStrings.inputType).value,
+                description: document.querySelector(DOMStrings.inputDescription).value,
+                value: document.querySelector(DOMStrings.inputValue).value
+            };
+        },
+        
+        getDOMstrings: function(){
+            return DOMStrings;
+        }
+    };
+    
 })();
 
 
@@ -22,9 +47,13 @@ var UIController = (function(){
 
 var controller = (function(budgetCtrl, UICtrl){   // Module can also receive arguments
     
+    var DOM = UICtrl.getDOMstrings();
+        
     var ctrlAddItem = function(){
         
         // 1. Get the filled input data
+        var input = UICtrl.getInput();
+        console.log(input);
         
         // 2. Add the item to the budget controller
         
@@ -34,12 +63,11 @@ var controller = (function(budgetCtrl, UICtrl){   // Module can also receive arg
         
         // 5. Display the budget on the UI
         
-        console.log('it works');
     }
     
     
     // Adding event handler (button)
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
     
    
     
